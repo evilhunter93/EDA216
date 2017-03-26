@@ -1,0 +1,8 @@
+### För Eclipse användare ###
+.metadata
+bin/
+*.tmp
+
+
+### Java ###
+*.class
