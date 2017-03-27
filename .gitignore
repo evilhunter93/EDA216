@@ -2,7 +2,8 @@
 .metadata
 bin/
 *.tmp
-
+.recomenders
 
 ### Java ###
 *.class
+.recommenders/

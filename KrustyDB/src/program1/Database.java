@@ -85,10 +85,18 @@ public class Database {
 			}
 		}
 	}
-
+	
+	// TODO
 	// Börja koda eget här
 	public ArrayList<String> getIngredient(String name) {
 		return null;
 
 	}
+
+
+	public String getRecipeString(String text) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
