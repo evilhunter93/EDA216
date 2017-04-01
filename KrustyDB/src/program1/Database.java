@@ -99,4 +99,14 @@ public class Database {
 		return null;
 	}
 
+	public boolean containsCookie(String recipe) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void addRecipe(String recipe, ArrayList<String> recipeIngredients) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
