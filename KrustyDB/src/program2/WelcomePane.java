@@ -22,8 +22,10 @@ public class WelcomePane extends BasicPane {
 		return p;
 
 	}
+	
 	public JComponent createBottomPanel() {
-
+		
+		messageLabel.setText("Connecting to database...");
         if(db.openConnection("Krusty.db")) {
             messageLabel.setText("Connected to database");
         } else {

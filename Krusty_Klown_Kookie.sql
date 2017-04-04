@@ -47,8 +47,8 @@ CREATE TABLE recipes(
 
 CREATE TABLE orders(
 	ID INTEGER,
-	customer_name varchar (30) NOT NULL,
 	orderDate date,
+	customer_name varchar (30) NOT NULL,
 	primary key (ID),
 	foreign key (customer_name) REFERENCES customers(name)
 );

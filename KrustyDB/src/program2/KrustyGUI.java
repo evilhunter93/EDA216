@@ -61,15 +61,15 @@ public class KrustyGUI {
       frame.setVisible(true);
       
 
-      welcomePane.displayMessage("Connecting to database ...");
-              
-      /* --- change code here --- */
-      /* --- change xxx to your user name, yyy to your password --- */
-      if (db.openConnection("Krusty.db")) {
-          welcomePane.displayMessage("Connected to database");
-      } else {
-          welcomePane.displayMessage("Could not connect to database");
-      }
+//      welcomePane.displayMessage("Connecting to database ...");
+//              
+//      /* --- change code here --- */
+//      /* --- change xxx to your user name, yyy to your password --- */
+//      if (db.openConnection("Krusty.db")) {
+//          welcomePane.displayMessage("Connected to database");
+//      } else {
+//          welcomePane.displayMessage("Could not connect to database");
+//      }
   }
 
   /**

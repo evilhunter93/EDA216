@@ -18,9 +18,7 @@ public class Database {
 	 * The database connection.
 	 */
 	private Connection conn;
-	private PreparedStatement login;
-
-	/**
+		/**
 	 * Create the database interface object. Connection to the database is
 	 * performed later.
 	 */
@@ -241,7 +239,7 @@ public class Database {
 			ps.setString(1, cookie);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				dates.add(rs.getString("production_dates"));
+				dates.add(rs.getString("production_date"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
