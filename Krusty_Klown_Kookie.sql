@@ -2,24 +2,25 @@
 
 PRAGMA foreign_keys = OFF;
 
-DROP TABLE IF EXISTS customer;
-DROP TABLE IF EXISTS ingredient;
-DROP TABLE IF EXISTS cookie;
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS ingredients;
+DROP TABLE IF EXISTS cookies;
 DROP TABLE IF EXISTS recipes;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS cookieOrders;
-DROP TABLE IF EXISTS pallet;
+DROP TABLE IF EXISTS pallets;
+DROP TABLE IF EXISTS locations;
 
 PRAGMA foreign_keys = ON;
 
 /*Skapa tabeller*/
-CREATE TABLE customer(
+CREATE TABLE customers(
 name varchar(20) not null,
 address varchar(40),
 primary key(name)
 );
 
-CREATE TABLE ingredient(
+CREATE TABLE ingredients(
 name varchar(30) not null,
 stock int,
 unit varchar(10),
@@ -28,7 +29,7 @@ amountDelivered int,
 primary key(name)
 );
 
-CREATE TABLE cookie(
+CREATE TABLE cookies(
 	name varchar(30) not null,
 	isBlocked boolean,
 	primary key (name)
@@ -40,8 +41,8 @@ CREATE TABLE recipes(
 	amount int,
 	unit varchar (10),
 	primary key (cookie_name, ingredient_name),
-	foreign key (cookie_name) REFERENCES cookie(name),
-	foreign key (ingredient_name) REFERENCES ingredient(name)
+	foreign key (cookie_name) REFERENCES cookies(name),
+	foreign key (ingredient_name) REFERENCES ingredients(name)
 );
 
 CREATE TABLE orders(
@@ -49,32 +50,39 @@ CREATE TABLE orders(
 	customer_name varchar (30) NOT NULL,
 	deliveryDate date,
 	primary key (ID),
-	foreign key (customer_name) REFERENCES customer(name)
+	foreign key (customer_name) REFERENCES customers(name)
 );
 
 CREATE TABLE cookieOrders(
 	orderID int,
 	cookie_name varchar(30),
-	nbrPallets int,
+	nbrpallets int,
 	primary key (orderID, cookie_name),
 	foreign key (orderID) REFERENCES orders(ID),
-	foreign key (cookie_name) REFERENCES cookie(name)
+	foreign key (cookie_name) REFERENCES cookies(name)
 );
 
-CREATE TABLE pallet(
+CREATE TABLE pallets(
 ID integer,
 production_date date,
 cookie_name varchar(20),
+location varchar(30),
 orderID int,
 isDelivered boolean,
 isPalletBlocked boolean,
 primary key (ID),
-foreign key (cookie_name) REFERENCES cookie(name),
-foreign key (orderID) REFERENCES orders(ID)
+foreign key (cookie_name) REFERENCES cookies(name),
+foreign key (orderID) REFERENCES orders(ID),
+foreign key (location) references locations(name)
+);
+
+CREATE TABLE locations(
+ name varchar(30),
+ primary key (name)
 );
 
 /* Insert Customers */
-INSERT INTO customer (name, address) VALUES 
+INSERT INTO customers (name, address) VALUES 
 ('Finnkakor AB', 'Helsingborg'),
 ('Småbröd AB', 'Malmö'),
 ('Kaffebröd AB', 'Landskrona'),
@@ -85,7 +93,7 @@ INSERT INTO customer (name, address) VALUES
 ('Skånekakor AB', 'Perstorp');
 
 /*Instert cookies*/
-INSERT INTO cookie (name, isBlocked) VALUES
+INSERT INTO cookies (name, isBlocked) VALUES
 ('Nut ring', 1),
 ('Nut cookie', 0),
 ('Amneris', 0),
@@ -94,7 +102,7 @@ INSERT INTO cookie (name, isBlocked) VALUES
 ('Berliner', 0);
 
 /* Insert ingredients*/
-INSERT INTO ingredient(name, stock, unit, lastDelivered, amountDelivered) VALUES
+INSERT INTO ingredients(name, stock, unit, lastDelivered, amountDelivered) VALUES
 ('Flour', 4000000, 'g', date(), 100000),
 ('Butter', 4000000, 'g', date(), 100000),
 ('Icing sugar', 1000000, 'g', date(), 100000),
@@ -129,6 +137,13 @@ INSERT INTO cookieOrders(orderID, cookie_name, nbrPallets) VALUES
 (2, 'Almond delight', 50),
 (2, 'Tango', 100),
 (3, 'Tango', 750);
+
+/* Vilka locations har vi? */
+INSERT INTO locations(name) VALUES
+('Production'),
+('Freezing'),
+('Packaging'),
+('Storage');
 
 /*Insert recipes*/
 INSERT INTO recipes(cookie_name, ingredient_name, amount, unit) VALUES
@@ -175,3 +190,4 @@ INSERT INTO recipes(cookie_name, ingredient_name, amount, unit) VALUES
 ('Berliner', 'Eggs', 50, 'g'),
 ('Berliner', 'Vanilla sugar', 5, 'g'),
 ('Berliner', 'Chocolate', 50, 'g');
+
