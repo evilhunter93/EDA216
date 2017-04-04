@@ -89,10 +89,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return pallets;
@@ -166,10 +168,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return location;
@@ -191,10 +195,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return pallets;
@@ -244,10 +250,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return dates;
@@ -257,7 +265,7 @@ public class Database {
 		PreparedStatement ps = null;
 		String date = null;
 		try {
-			String sql = "SELECT production_date FROM pallets WHERE id = ?";
+			String sql = "SELECT production_date FROM pallets WHERE ID = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -266,10 +274,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return date;
@@ -289,10 +299,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return isDelivered;
@@ -312,10 +324,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -336,10 +350,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return orderID;
@@ -358,10 +374,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return block;
@@ -383,10 +401,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -403,10 +423,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -425,10 +447,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return orderID;
@@ -448,10 +472,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return orderDate;
@@ -471,10 +497,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return companyName;
@@ -495,10 +523,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return ingredients;
@@ -518,10 +548,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return amount;
@@ -541,10 +573,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return amount;
@@ -578,10 +612,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -601,10 +637,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
@@ -625,10 +663,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return cookies;
