@@ -22,6 +22,16 @@ public class WelcomePane extends BasicPane {
 		return p;
 
 	}
+	public JComponent createBottomPanel() {
+
+        if(db.openConnection("Krusty.db")) {
+            messageLabel.setText("Connected to database");
+        } else {
+            messageLabel.setText("Could not connect to database");
+        }
+        return new MessagePanel(messageLabel);
+
+    }
 
 	public class MessagePanel extends JPanel {
 		private static final long serialVersionUID = 1;

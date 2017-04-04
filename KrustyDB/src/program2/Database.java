@@ -220,10 +220,12 @@ public class Database {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		return cookies;
@@ -611,29 +613,28 @@ public class Database {
 	}
 
 	public ArrayList<String> getBlockedProducts() {
-        PreparedStatement ps = null;
-        ArrayList<String> cookies = new ArrayList<String>();
-        String sql = "SELECT name FROM cookies WHERE isBlocked = 1";
-        try {
-            ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                String cookieName = rs.getString("name");
-                cookies.add(cookieName + "\n");
-            }
+		PreparedStatement ps = null;
+		ArrayList<String> cookies = new ArrayList<String>();
+		String sql = "SELECT name FROM cookies WHERE isBlocked = 1";
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				String cookieName = rs.getString("name");
+				cookies.add(cookieName + "\n");
+			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cookies;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                ps.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return cookies;
-
-    }
+	}
 
 }
