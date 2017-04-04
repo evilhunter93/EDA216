@@ -42,8 +42,13 @@ public class KrustyGUI {
       tabbedPane.addTab("Welcome", null, welcomePane, "Welcome");
       
       PalletsPane palletsPane = new PalletsPane(db);
+      tabbedPane.addTab("View and Block Cookie Pallets", null, palletsPane, "View and Block Cookie Pallets");
       
+      CreatePalletPane createPalletPane = new CreatePalletPane(db);
+      tabbedPane.addTab("Create New Pallet", null, createPalletPane, "Create pallet");
       
+      ShowBlockedProductsPane showBlockedProductsPane = new ShowBlockedProductsPane(db);
+      tabbedPane.addTab("Blocked Cookies", null, showBlockedProductsPane, "Show blocked Cookies");
       
       tabbedPane.setSelectedIndex(0);
 

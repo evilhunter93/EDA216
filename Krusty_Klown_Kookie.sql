@@ -48,7 +48,7 @@ CREATE TABLE recipes(
 CREATE TABLE orders(
 	ID INTEGER,
 	customer_name varchar (30) NOT NULL,
-	deliveryDate date,
+	orderDate date,
 	primary key (ID),
 	foreign key (customer_name) REFERENCES customers(name)
 );
@@ -68,6 +68,7 @@ production_date date,
 cookie_name varchar(20),
 location varchar(30),
 orderID int,
+delivery_date date,
 isDelivered boolean,
 isPalletBlocked boolean,
 primary key (ID),
@@ -124,7 +125,7 @@ INSERT INTO ingredients(name, stock, unit, lastDelivered, amountDelivered) VALUE
 ('Vanilla sugar', 1000000, 'g', date(), 100000);
 
 /*Insert order values*/
-INSERT INTO orders(customer_name, deliveryDate) VALUES
+INSERT INTO orders(customer_name, orderDate) VALUES
 ('Finnkakor AB', date()),
 ('Kalaskakor AB', date()),
 ('Småbröd AB', date());
