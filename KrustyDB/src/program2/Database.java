@@ -159,7 +159,7 @@ public class Database {
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "SELECT location FROM pallets where id = ?";
+			String sql = "SELECT location FROM pallets WHERE ID = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -290,7 +290,7 @@ public class Database {
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "SELECT isDelivered FROM pallets WHERE id = ?";
+			String sql = "SELECT isDelivered FROM pallets WHERE ID = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -315,7 +315,7 @@ public class Database {
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "SELECT delivery_date FROM pallets WHERE id = ?";
+			String sql = "SELECT delivery_date FROM pallets WHERE ID = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -341,7 +341,7 @@ public class Database {
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "SELECT orderID FROM pallets WHERE id = ?";
+			String sql = "SELECT orderID FROM pallets WHERE ID = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -463,7 +463,7 @@ public class Database {
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "SELECT orderDate FROM orders WHERE id = ?";
+			String sql = "SELECT orderDate FROM orders WHERE ID = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, orderID);
 			ResultSet rs = ps.executeQuery();
@@ -488,7 +488,7 @@ public class Database {
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "SELECT customer_name FROM orders WHERE id = ?";
+			String sql = "SELECT customer_name FROM orders WHERE ID = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, orderID);
 			ResultSet rs = ps.executeQuery();
