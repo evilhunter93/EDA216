@@ -63,7 +63,7 @@ CREATE TABLE cookieOrders(
 );
 
 CREATE TABLE pallets(
-ID integer,
+ID INTEGER,
 production_date date,
 cookie_name varchar(20),
 location varchar(30),

@@ -596,16 +596,16 @@ public class Database {
 		Savepoint savepoint = null;
 
 		try {
-			String sql = "INSERT INTO Pallets(ID, production_date, cookie_name, location, orderID, delivery_date, isDelivered, isPalletBlocked) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO Pallets(production_date, cookie_name, location, orderID, delivery_date, isDelivered, isPalletBlocked) VALUES(?, ?, ?, ?, ?, ?, ?)";
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, 0);
-			ps.setString(2, production_date);
-			ps.setString(3, cookie_name);
-			ps.setString(4, defaultLocation);
-			ps.setInt(5, orderID);
-			ps.setString(6, deliveryDate);
-			ps.setBoolean(7, isDelivered);
-			ps.setBoolean(8, isBlocked);
+			//ps.setInt(1, 0);
+			ps.setString(1, production_date);
+			ps.setString(2, cookie_name);
+			ps.setString(3, defaultLocation);
+			ps.setInt(4, orderID);
+			ps.setString(5, deliveryDate);
+			ps.setBoolean(6, isDelivered);
+			ps.setBoolean(7, isBlocked);
 
 			ps.executeUpdate();
 
