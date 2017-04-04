@@ -192,3 +192,12 @@ INSERT INTO recipes(cookie_name, ingredient_name, amount, unit) VALUES
 ('Berliner', 'Vanilla sugar', 5, 'g'),
 ('Berliner', 'Chocolate', 50, 'g');
 
+
+SELECT * FROM customers;
+SELECT * FROM ingredients;
+SELECT * FROM cookies;
+SELECT * FROM recipes;
+SELECT * FROM orders;
+SELECT * FROM cookieOrders;
+SELECT * FROM pallets;
+SELECT * FROM locations;
