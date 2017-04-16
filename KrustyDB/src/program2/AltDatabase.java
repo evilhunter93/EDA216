@@ -105,21 +105,24 @@ public class AltDatabase {
 	 * 
 	 * @return list of blocked cookies
 	 */
-	public ArrayList<String> getBlockedBatches() {
+	public ArrayList<Batch> getBlockedBatches() {
+		//Might want to create a view batches, as this will not work! Will not sense intermediate blocked
+		//batches
 		try {
-			String sql = "SELECT cookie_name, min(date), max(date) from Pallets "
+			String sql = "SELECT cookie_name, min(production_date) as mip, max(production_date) as map"
+					+ "FROM Pallets "
 					+ "WHERE Pallets.isPalletBlocked = true" 
 					+ "GROUP BY cookie_name";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
-			ArrayList<String> list = new ArrayList<>();
+			ArrayList<Batch> ba = new ArrayList<Batch>();
 
 			while (rs.next()) {
-				list.add(rs.getString("name"));
+				ba.add(new Batch(rs.getString("cookie_name"), rs.getString("mip"), rs.getString("map")));
 			}
 
-			return list;
+			return ba;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -367,12 +370,12 @@ public class AltDatabase {
 		PreparedStatement ps = null;
 		Boolean block = false;
 		try {
-			String sql = "SELECT isBlocked FROM cookies WHERE name = ?";
+			String sql = "SELECT isPalletBlocked FROM pallets WHERE cookie_name = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, cookie);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			block = rs.getBoolean("isBlocked");
+			block = rs.getBoolean("isPalletBlocked");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
