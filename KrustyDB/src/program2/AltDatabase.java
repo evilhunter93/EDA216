@@ -105,9 +105,11 @@ public class AltDatabase {
 	 * 
 	 * @return list of blocked cookies
 	 */
-	public ArrayList<String> getBlockedCookies() {
+	public ArrayList<String> getBlockedBatches() {
 		try {
-			String sql = "SELECT * from Cookie where isBlocked = true";
+			String sql = "SELECT cookie_name, min(date), max(date) from Pallets "
+					+ "WHERE Pallets.isPalletBlocked = true" 
+					+ "GROUP BY cookie_name";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
@@ -134,7 +136,7 @@ public class AltDatabase {
 	 */
 	public ArrayList<String> getBlockedPallets(String cookie) {
 		try {
-			String sql = "SELECT * from Cookie natural join Pallet where Cookie.isBlocked = true and Pallet.cookieName = ? and Cookie.name = Pallet.cookieName";
+			String sql = "SELECT * from Pallets WHERE isPalletBlocked = true";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, cookie);
 			ResultSet rs = ps.executeQuery();
@@ -390,13 +392,16 @@ public class AltDatabase {
 	 * 
 	 * @param cookie
 	 */
-	public void blockCookie(String cookie) {
+	public void blockCookie(String cookie, String bDate, String eDate) {
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "UPDATE cookies SET isBlocked = 1 where name = ?";
+			String sql = "UPDATE pallets SET isPPalletBlocked = 1 where cookie_name = ? AND (date > ? "
+					+ "or date < ?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, cookie);
+			ps.setString(2, bDate);
+			ps.setString(3, eDate);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -412,13 +417,16 @@ public class AltDatabase {
 
 	}
 
-	public void unBlockCookie(String cookie) {
+	public void unBlockCookie(String cookie, String bDate, String eDate) {
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "UPDATE cookies SET isBlocked = 0 WHERE name = ?";
+			String sql = "UPDATE pallets SET isPPalletBlocked = 0 where cookie_name = ? AND (date > ? "
+					+ "or date < ?)";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, cookie);
+			ps.setString(2, bDate);
+			ps.setString(3, eDate);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
