@@ -101,37 +101,6 @@ public class AltDatabase {
 	}
 
 	/**
-	 * Gets blocked cookies from database.
-	 * 
-	 * @return list of blocked cookies
-	 */
-	public ArrayList<Batch> getBlockedBatches() {
-		//Might want to create a view batches, as this will not work! Will not sense intermediate blocked
-		//batches
-		try {
-			String sql = "SELECT cookie_name, min(production_date) as mip, max(production_date) as map"
-					+ "FROM Pallets "
-					+ "WHERE Pallets.isPalletBlocked = true" 
-					+ "GROUP BY cookie_name";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-
-			ArrayList<Batch> ba = new ArrayList<Batch>();
-
-			while (rs.next()) {
-				ba.add(new Batch(rs.getString("cookie_name"), rs.getString("mip"), rs.getString("map")));
-			}
-
-			return ba;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
-	/**
 	 * Get blocked pallets of a specific cookie.
 	 * 
 	 * @param cookie
@@ -662,12 +631,12 @@ public class AltDatabase {
 	public ArrayList<String> getBlockedProducts() {
 		PreparedStatement ps = null;
 		ArrayList<String> cookies = new ArrayList<String>();
-		String sql = "SELECT name FROM cookies WHERE isBlocked = 1";
+		String sql = "SELECT distinct cookies_name FROM pallets WHERE isPalletBlocked = 1";
 		try {
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				String cookieName = rs.getString("name");
+				String cookieName = rs.getString("cookies_name");
 				cookies.add(cookieName + "\n");
 			}
 
@@ -683,6 +652,34 @@ public class AltDatabase {
 			}
 		}
 		return cookies;
+
+	}
+	
+	public ArrayList<Integer> getSortedBlockedProducts(String cookie) {
+		PreparedStatement ps = null;
+		ArrayList<Integer> ids = new ArrayList<Integer>();
+		String sql = "SELECT ID FROM pallets WHERE isPalletBlocked = 1 AND cookie_name = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, cookie);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("ID");
+				ids.add(id);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return ids;
 
 	}
 
