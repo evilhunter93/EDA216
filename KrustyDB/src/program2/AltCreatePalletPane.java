@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-public class AltCreatePalletPane extends BasicPane {
+public class AltCreatePalletPane extends AltBasicPane {
 
     private static final int ORDER_ID = 0;
     private static final int ORDER_DATE = 1;
@@ -25,7 +25,7 @@ public class AltCreatePalletPane extends BasicPane {
     private DefaultListModel<Integer> orderIDListModel;
     private JList<Integer> orderIDList;
 
-    public AltCreatePalletPane(Database db) {
+    public AltCreatePalletPane(AltDatabase db) {
         super(db);
     }
 

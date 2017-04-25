@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-public class AltPalletsPane extends BasicPane {
+public class AltPalletsPane extends AltBasicPane {
 
     private static final int ID = 0;
     private static final int CREATED_DATE = 1;
@@ -35,7 +35,7 @@ public class AltPalletsPane extends BasicPane {
     private DefaultListModel<Integer> barcodeListModel;
     private JList<Integer> barcodeList;
 
-    public AltPalletsPane(Database db) {
+    public AltPalletsPane(AltDatabase db) {
         super(db);
     }
 
@@ -248,8 +248,11 @@ public class AltPalletsPane extends BasicPane {
 
         public void actionPerformed(ActionEvent e) {
             String cookie = cookieList.getSelectedValue();
+            //TODO: Fix bDate and eDate
+            String bDate = null;
+            String eDate = null;
             if(!db.ifBlocked(cookie)) {
-                db.blockCookie(cookie);
+                db.blockCookie(cookie, bDate, eDate);
                 messageLabel.setText(cookie + " blocked!");
             } else {
 
@@ -263,8 +266,11 @@ public class AltPalletsPane extends BasicPane {
 
         public void actionPerformed(ActionEvent e) {
             String cookie = cookieList.getSelectedValue();
+            //TODO: Fix bDate and eDate
+            String bDate = null;
+            String eDate = null;
             if(db.ifBlocked(cookie)) {
-                db.unBlockCookie(cookie);
+                db.unBlockCookie(cookie, bDate, eDate);
                 messageLabel.setText(cookie + " unblocked!");
             } else {
 

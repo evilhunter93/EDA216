@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 
 
-public class AltShowBlockedProductsPane extends BasicPane {
+public class AltShowBlockedProductsPane extends AltBasicPane {
 
 	private static final long serialVersionUID = 1;
 	private DefaultListModel<String> cookieListModel;
 	private JList<String> cookieList;
 
-	public AltShowBlockedProductsPane(Database db) {
+	public AltShowBlockedProductsPane(AltDatabase db) {
 		super(db);
 	}
 
